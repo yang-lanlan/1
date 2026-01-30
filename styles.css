@@ -243,7 +243,7 @@ body{
 .details-spacer{
   flex: 1 1 auto;
   /* user-tuned: keeps the lower white space without pushing the footer off-screen */
-  min-height: clamp(90px, 18vh, 220px);
+  min-height: clamp(110px, 22vh, 250px);
 }
 
 /* Blinking tri-color bar: 1s cycle, 0.5s invisible */
@@ -354,6 +354,6 @@ body{
   .zone-number{ font-size: 52px; }
   .zone-label{ font-size: 22px; }
   .zone-sub{ font-size: 18px; }
-  .details-spacer{ min-height: clamp(120px, 23vh, 260px); }
+  .details-spacer{ min-height: clamp(100px, 20vh, 220px); }
   .expires{ font-size: 26px; }
 }
