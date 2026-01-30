@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Ticket</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- First screen: choose QR border color -->
+  <div id="color-selection" class="overlay" aria-label="Select QR border color">
+    <div class="picker-card" role="dialog" aria-modal="true">
+      <div class="picker-title">Select QR Border Color</div>
+      <div class="picker-sub">Tap a color to continue</div>
+      <div class="color-grid" role="list">
+        <button class="swatch swatch-green"   data-color="Green"   aria-label="Green"   role="listitem"></button>
+        <button class="swatch swatch-magenta" data-color="Magenta" aria-label="Magenta" role="listitem"></button>
+        <button class="swatch swatch-pink"    data-color="Pink"    aria-label="Pink"    role="listitem"></button>
+        <button class="swatch swatch-red"     data-color="Red"     aria-label="Red"     role="listitem"></button>
+        <button class="swatch swatch-silver"  data-color="Silver"  aria-label="Silver"  role="listitem"></button>
+        <button class="swatch swatch-yellow"  data-color="Yellow"  aria-label="Yellow"  role="listitem"></button>
+        <button class="swatch swatch-blue"    data-color="Blue"    aria-label="Blue"    role="listitem"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticket screen -->
+  <div id="container" class="screen" aria-live="polite">
+    <div class="app-header" role="banner">
+      <div class="back" aria-hidden="true">&#x2039;</div>
+      <div class="header-title">One Way Ticket</div>
+      <div class="header-spacer" aria-hidden="true"></div>
+    </div>
+
+    <div class="ticket-card" role="region" aria-label="Ticket">
+      <div class="qr-area">
+        <div class="qr-frame" id="qr-frame" tabindex="0" role="button" aria-label="Tap to enlarge QR code">
+          <div class="qr-inner">
+            <img id="qr-image" class="qr-image" alt="QR Code" />
+          </div>
+        </div>
+        <div class="tap">Tap to enlarge</div>
+      </div>
+
+      <div class="divider" aria-hidden="true"></div>
+
+      <div class="details">
+        <div class="route-type" id="route-type">INTERSTATE</div>
+        <div class="zone-number" id="zone-number">2</div>
+        <div class="zone-label" id="zone-label">ZONE RIDE</div>
+        <div class="zone-sub" id="zone-sub">1 Adult</div>
+
+        <!-- Creates the large blank space like the original app -->
+        <div class="details-spacer" aria-hidden="true"></div>
+
+        <div class="color-bar" aria-hidden="true">
+          <span class="seg seg-a"></span>
+          <span class="seg seg-b"></span>
+          <span class="seg seg-c"></span>
+        </div>
+
+        <div class="thin-track" aria-hidden="true"></div>
+
+        <div id="timer" class="expires">Expires in 30:00</div>
+        <div class="validator">View Onboard Validator Instructions</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen QR modal (tap to close). -->
+  <div id="qr-modal" class="qr-modal" aria-hidden="true">
+    <div class="qr-modal-content" role="dialog" aria-label="Enlarged QR code">
+      <div class="qr-frame modal-frame" aria-hidden="true">
+        <div class="qr-inner">
+          <img id="qr-modal-img" alt="Enlarged QR Code" />
+        </div>
+      </div>
+      <div class="qr-modal-hint">Tap anywhere to close</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

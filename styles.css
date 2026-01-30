@@ -1,0 +1,315 @@
+/* Ticket mock UI: closer to the original NJT ticket look */
+:root{
+  --top-blue: #1e7cc6;
+  --top-blue-dark: #185f9b;
+  --qr-border: #f2d100; /* default; overwritten by picker */
+  --card-radius: 22px;
+}
+
+html, body{
+  width:100%;
+  height:100%;
+  margin:0;
+}
+
+body{
+  overflow:hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* Not pure blue: top blue, bottom white */
+  background: linear-gradient(to bottom,
+    var(--top-blue) 0%,
+    var(--top-blue) 40%,
+    #ffffff 40%,
+    #ffffff 100%);
+}
+
+/* ---------- Color picker overlay ---------- */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:50;
+}
+
+.picker-card{
+  width:min(92vw, 420px);
+  border-radius:18px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.12);
+  padding:22px 18px 18px;
+  box-sizing:border-box;
+  text-align:center;
+  background:#ffffff;
+}
+
+.picker-title{
+  font-size:18px;
+  font-weight:800;
+  color:#111;
+}
+
+.picker-sub{
+  margin-top:6px;
+  font-size:13px;
+  color:#444;
+}
+
+.color-grid{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:14px;
+}
+
+.swatch{
+  width:100%;
+  aspect-ratio: 1 / 1;
+  border-radius:14px;
+  border:2px solid rgba(0,0,0,0.08);
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,0.35);
+  cursor:pointer;
+  background: var(--swatch, #ddd);
+}
+
+.swatch:active{ transform: scale(0.98); }
+
+.swatch-green  { --swatch:#2bb673; }
+.swatch-magenta{ --swatch:#9c27b0; }
+.swatch-pink   { --swatch:#ff4fa8; }
+.swatch-red    { --swatch:#e53935; }
+.swatch-silver { --swatch:#bfc5cc; }
+.swatch-yellow { --swatch:#f2d100; }
+.swatch-blue   { --swatch:#2a79ff; }
+
+/* ---------- Ticket screen ---------- */
+.screen{
+  height:100%;
+  width:100%;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) 16px 18px;
+}
+
+.app-header{
+  width:100%;
+  max-width:560px;
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  color:#ffffff;
+}
+
+.back{
+  width:40px;
+  font-size:44px;
+  line-height:1;
+  opacity:0.95;
+}
+
+.header-title{
+  font-size:18px;
+  font-weight:800;
+}
+
+.header-spacer{ width:40px; }
+
+.ticket-card{
+  width:min(92vw, 560px);
+  background:#ffffff;
+  border-radius: var(--card-radius);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.22);
+  padding: 18px 18px 16px;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+}
+
+/* QR */
+.qr-area{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.qr-frame{
+  width: min(68vw, 292px);
+  height:min(68vw, 292px);
+  padding: 14px;
+  box-sizing:border-box;
+  background: var(--qr-border);
+  border-radius: 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  outline:none;
+}
+
+.qr-frame:focus{
+  box-shadow: 0 0 0 3px rgba(30, 124, 198, 0.28);
+}
+
+.qr-inner{
+  width:100%;
+  height:100%;
+  background:#ffffff;
+  border-radius: 10px;
+  padding:10px;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.qr-image{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  image-rendering: pixelated;
+}
+
+.tap{
+  margin-top:10px;
+  font-size:14px;
+  color:#2a2a2a;
+}
+
+.divider{
+  margin: 12px 0 12px;
+  border-top:2px dashed #cfd8e3;
+}
+
+/* Details layout with whitespace like original */
+.details{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  flex: 1 1 auto;
+  min-height: 240px; /* forces blank space on taller screens */
+}
+
+.route-type{
+  text-align:center;
+  color:#e40000;
+  font-weight:900;
+  letter-spacing: 1px;
+  font-size: 34px;
+  margin-top: 2px;
+}
+
+.zone-number{
+  text-align:center;
+  font-size: 64px;
+  font-weight:900;
+  margin-top: 8px;
+  line-height:1;
+  color:#000;
+}
+
+.zone-label{
+  text-align:center;
+  font-size: 22px;
+  font-weight:900;
+  margin-top: 6px;
+  color:#000;
+}
+
+.zone-sub{
+  text-align:center;
+  font-size: 19px;
+  font-weight:700;
+  margin-top: 8px;
+  color:#000;
+}
+
+/* This is the big blank area you asked for */
+.details-spacer{
+  flex: 1 1 auto;
+  min-height: 90px;
+}
+
+/* Blinking tri-color bar */
+@keyframes blinkHalf {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.color-bar{
+  width: 100%;
+  height: 14px;
+  border-radius: 8px;
+  overflow:hidden;
+  display:flex;
+  margin: 10px 0 10px;
+  animation: blinkHalf 1s steps(1, end) infinite;
+}
+
+.seg{ height:100%; }
+.seg-a{ width:34%; background:#f6a04d; }
+.seg-b{ width:33%; background:#8cf0e4; }
+.seg-c{ width:33%; background:#bfbfbf; }
+
+.thin-track{
+  width: 88%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.10);
+  margin-bottom: 8px;
+}
+
+.expires{
+  text-align:center;
+  font-size: 24px;
+  font-weight:800;
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+
+.validator{
+  text-align:center;
+  margin-top: 10px;
+  font-size: 15px;
+  text-decoration: underline;
+  color:#1a1a1a;
+  padding-bottom: 4px;
+}
+
+/* ---------- QR modal ---------- */
+.qr-modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+  background: rgba(0,0,0,0.65);
+  z-index:100;
+}
+
+.qr-modal.show{ display:flex; }
+
+.qr-modal-content{
+  width:min(92vw, 520px);
+  background:#ffffff;
+  border-radius:18px;
+  padding:18px;
+  box-sizing:border-box;
+  text-align:center;
+}
+
+.modal-frame{
+  width: min(82vw, 420px);
+  height: min(82vw, 420px);
+  margin: 0 auto;
+}
+
+.qr-modal-hint{
+  margin-top:12px;
+  font-size:14px;
+  color:#2a2a2a;
+}
