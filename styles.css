@@ -243,7 +243,7 @@ body{
 .details-spacer{
   flex: 1 1 auto;
   /* user-tuned: keeps the lower white space without pushing the footer off-screen */
-  min-height: clamp(130px, 25vh, 270px);
+  min-height: clamp(110px, 20vh, 250px);
 }
 
 /* Blinking tri-color bar: 1s cycle, 0.5s invisible */
