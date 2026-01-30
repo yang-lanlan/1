@@ -242,7 +242,8 @@ body{
 /* Large blank area (increase this to get more lower whitespace) */
 .details-spacer{
   flex: 1 1 auto;
-  min-height: clamp(150px, 25vh, 270px);
+  /* user-tuned: keeps the lower white space without pushing the footer off-screen */
+  min-height: clamp(130px, 25vh, 270px);
 }
 
 /* Blinking tri-color bar: 1s cycle, 0.5s invisible */
@@ -252,15 +253,30 @@ body{
 }
 
 .color-bar{
+  /*
+    Robust tri-color bar:
+    Render as a single background gradient to avoid occasional iOS flex-child
+    paint issues. Keeps the 1s cycle with 0.5s fully invisible.
+    Segment ratios match 1.1 : 1.1 : 1.3 => 31.43% / 31.43% / 37.14%.
+  */
   width: 100%;
   height: 18px;
+  min-height: 18px;
+  flex: 0 0 18px;
   border-radius: 10px;
   overflow:hidden;
-  display:flex;
+  background: linear-gradient(to right,
+    #f5a04c 0%,
+    #f5a04c 31.43%,
+    #8ff1e6 31.43%,
+    #8ff1e6 62.86%,
+    #b9b9b9 62.86%,
+    #b9b9b9 100%);
   animation: blinkHalf 1s steps(1, end) infinite;
 }
 
-.color-bar .seg{ height:100%; display:block; }
+/* keep the existing markup as-is, but we don't rely on flex children for rendering */
+.color-bar .seg{ display:none; }
 .color-bar .seg-a{ flex: 1.1; background:#f5a04c; }
 .color-bar .seg-b{ flex: 1.1; background:#8ff1e6; }
 .color-bar .seg-c{ flex: 1.3; background:#b9b9b9; }
@@ -275,7 +291,7 @@ body{
 
 .expires{
   margin-top: 16px;
-  font-size: 30px;          /* smaller by one */
+  font-size: 28px;          /* smaller by one more */
   font-weight:500;          /* not bold */
   color:#111;
 }
@@ -338,6 +354,6 @@ body{
   .zone-number{ font-size: 52px; }
   .zone-label{ font-size: 22px; }
   .zone-sub{ font-size: 18px; }
-  .details-spacer{ min-height: clamp(160px, 26vh, 300px); }
-  .expires{ font-size: 28px; }
+  .details-spacer{ min-height: clamp(120px, 23vh, 260px); }
+  .expires{ font-size: 26px; }
 }
