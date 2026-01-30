@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>One Way Ticket</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Color picker (controls QR border color) -->
+    <div class="overlay" id="picker" role="dialog" aria-modal="true" aria-label="Select QR border color">
+      <div class="picker-card">
+        <div class="picker-title">Select a Color</div>
+        <div class="picker-sub">This sets the QR border color.</div>
+        <div class="color-grid" id="colorGrid"></div>
+      </div>
+    </div>
+
+    <!-- Main screen -->
+    <div class="screen" id="screen" aria-hidden="true">
+      <div class="app-header">
+        <div class="back" aria-hidden="true">&#8249;</div>
+        <div class="header-title">One Way Ticket</div>
+        <div class="header-spacer"></div>
+      </div>
+
+      <div class="ticket-card" role="group" aria-label="Ticket">
+        <div class="qr-area">
+          <button class="qr-frame" id="qrButton" type="button" aria-label="Tap to enlarge">
+            <div class="qr-inner">
+              <img id="qrImage" class="qr-image" alt="QR code" />
+            </div>
+          </button>
+          <div class="tap">Tap to enlarge</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="details">
+          <div class="route-type" id="routeType">INTERSTATE</div>
+          <div class="zone-number" id="zoneNumber">2</div>
+          <div class="zone-label" id="zoneLabel">ZONE RIDE</div>
+          <div class="zone-sub" id="zoneSub">1 Adult</div>
+          <div class="details-spacer" aria-hidden="true"></div>
+        </div>
+
+        <div class="bottom-area">
+          <div class="color-bar" aria-hidden="true">
+            <span class="seg seg-a"></span>
+            <span class="seg seg-b"></span>
+            <span class="seg seg-c"></span>
+          </div>
+          <div class="thin-track" aria-hidden="true"></div>
+
+          <div class="expires" id="expires">Expires in 59:39</div>
+          <a class="validator-link" href="#" id="validatorLink">View Onboard Validator Instructions</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enlarge modal -->
+    <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Enlarged QR code">
+      <div class="modal-bg" id="modalBg"></div>
+      <div class="modal-card">
+        <div class="qr-frame modal-frame" id="modalFrame" tabindex="-1">
+          <div class="qr-inner modal-inner">
+            <img id="qrImageLarge" class="qr-image" alt="Enlarged QR code" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
