@@ -242,7 +242,7 @@ body{
 /* Large blank area (increase this to get more lower whitespace) */
 .details-spacer{
   flex: 1 1 auto;
-  min-height: clamp(180px, 30vh, 420px);
+  min-height: clamp(180px, 30vh, 350px);
 }
 
 /* Blinking tri-color bar: 1s cycle, 0.5s invisible */
